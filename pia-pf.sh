@@ -35,8 +35,6 @@ branch = ((not, ((equal, ((network.listen.port)), ((value, $myport)))))), \\
     ((catch, \\
         ((network.port_range.set, $myport-$myport)), \\
         ((dht.port.set, $myport)), \\
-        ((network.local_address.set, $myip)), \\
-        ((network.bind_address.set, 0.0.0.0)) \\
     ))
 EOF
 
