@@ -9,7 +9,6 @@ fi
 name=''
 ip=''
 token=''
-myip=''
 source /tmp/pia.info.sh
 
 response="$(
