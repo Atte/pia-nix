@@ -168,7 +168,7 @@ in
           RestartSec = "10s";
           Type = "simple";
           ExecStart = script ./pia-pf.sh;
-          NetworkNamespacePath = "/var/run/netns/pia";
+          NetworkNamespacePath = "/var/run/netns/${cfg.netns}";
         };
         environment = {
           PIA_CERT = ./ca.rsa.4096.crt;
