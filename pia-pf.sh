@@ -49,7 +49,6 @@ if test -n "${TRANSMISSION_URL:-}"; then
         sid="$(
             jq --null-input '.method = "session-stats"' | \
                 curl --silent --include  \
-                    -X HEAD \
                     "${auth[@]}" \
                     --data-binary '@-' \
                     --header 'Content-Type: application/json' \
