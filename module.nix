@@ -128,7 +128,7 @@ in
           service: {
             name = service;
             value = {
-              after = [ "pia-wg.service" "pia-wg-pf.service" ];
+              after = [ "pia-wg.service" ];
               wants = [ "pia-wg.service" ];
               serviceConfig.NetworkNamespacePath = "/var/run/netns/${cfg.netns}";
             };
