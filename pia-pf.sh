@@ -43,7 +43,7 @@ if test -n "${TRANSMISSION_URL:-}"; then
 
         auth=()
         if test -n "${TRANSMISSION_USERNAME:-}"; then
-            auth=("--auth" "$TRANSMISSION_USERNAME:$TRANSMISSION_PASSWORD")
+            auth=("--basic" "$TRANSMISSION_USERNAME:$TRANSMISSION_PASSWORD")
         fi
 
         sid="$(
