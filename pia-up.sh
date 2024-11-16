@@ -23,6 +23,13 @@ port="${ports[0]}"
 ip="${ips[0]}"
 name="${names[0]}"
 
+if test -n "${PIA_USER_FILE:-}"; then
+    PIA_USER="$(<"$PIA_USER_FILE")"
+fi
+if test -n "${PIA_USER_CMD:-}"; then
+    PIA_USER="$("$0" -c "$PIA_USER_CMD")"
+fi
+
 if test -n "${PIA_PASS_FILE:-}"; then
     PIA_PASS="$(<"$PIA_PASS_FILE")"
 fi

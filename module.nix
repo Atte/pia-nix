@@ -23,7 +23,20 @@ in
 
       username = lib.mkOption {
         description = "PIA username";
-        type = str;
+        type = nullOr str;
+        default = null;
+      };
+
+      usernameFile = lib.mkOption {
+        description = "Path to a file containing the PIA username";
+        type = nullOr str;
+        default = null;
+      };
+
+      usernameCommand = lib.mkOption {
+        description = "Command to run to obtain the PIA username";
+        type = nullOr str;
+        default = null;
       };
 
       password = lib.mkOption {
@@ -99,6 +112,10 @@ in
   config = lib.mkIf cfg.enable {
     assertions = [
       {
+        assertion = with cfg; lib.count (x: x != null) [ username usernameFile usernameCommand ] == 1;
+        message = "Exactly one of services.pia-wg.{username, usernameFile, usernameCommand} must be non-null.";
+      }
+      {
         assertion = with cfg; lib.count (x: x != null) [ password passwordFile passwordCommand ] == 1;
         message = "Exactly one of services.pia-wg.{password, passwordFile, passwordCommand} must be non-null.";
       }
@@ -151,6 +168,8 @@ in
         environment = {
           PIA_CERT = ./ca.rsa.4096.crt;
           PIA_USER = cfg.username;
+          PIA_USER_FILE = cfg.usernameFile;
+          PIA_USER_CMD = cfg.usernameCommand;
           PIA_PASS = cfg.password;
           PIA_PASS_FILE = cfg.passwordFile;
           PIA_PASS_CMD = cfg.passwordCommand;
